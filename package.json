@@ -1,6 +1,6 @@
 {
   "name": "@salesforce/eslint-config-lwc",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "main": "index.js",
   "license": "MIT",
   "description": "Opinionated ESLint configurations for LWC projects",
@@ -12,11 +12,11 @@
   ],
   "scripts": {
     "format": "prettier --write \"**/*.{js,md}\"",
-    "lint": "eslint",
+    "lint": "eslint *.js",
     "test": "mocha"
   },
   "dependencies": {
-    "@lwc/eslint-plugin-lwc": "~0.10.0",
+    "@lwc/eslint-plugin-lwc": "apoblock/eslint-plugin-lwc#i18n-lwc-rules",
     "babel-eslint": "~10.1.0",
     "eslint-plugin-import": "~2.20.2",
     "eslint-plugin-jest": "~23.8.2",
@@ -42,9 +42,12 @@
   "files": [
     "lib",
     "base.js",
+    "base-18n.js",
     "extended.js",
+    "extended-i18n.js",
     "index.js",
-    "recommended.js"
+    "recommended.js",
+    "recommended-i18n.js"
   ],
   "husky": {
     "hooks": {
