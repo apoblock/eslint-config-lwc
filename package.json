@@ -42,12 +42,10 @@
   "files": [
     "lib",
     "base.js",
-    "base-18n.js",
+    "18n.js",
     "extended.js",
-    "extended-i18n.js",
     "index.js",
-    "recommended.js",
-    "recommended-i18n.js"
+    "recommended.js"
   ],
   "husky": {
     "hooks": {
