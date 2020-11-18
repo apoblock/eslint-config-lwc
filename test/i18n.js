@@ -20,7 +20,7 @@ describe('i18n configs', () => {
         unlinkConfig();
     });
 
-    it('should load properly i18n config', () => {
+    it('should load properly i18n config with base set', () => {
         const cli = new eslint.CLIEngine({
             useEslintrc: false,
             baseConfig: {
@@ -42,11 +42,11 @@ describe('i18n configs', () => {
         assert.equal(messages[0].ruleId, '@lwc/lwc/no-moment');
     });
 
-    it('recommended set should include @lwc/lwc/no-moment rule', () => {
+    it('extended set should include @lwc/lwc/no-moment rule', () => {
         const cli = new eslint.CLIEngine({
             useEslintrc: false,
             baseConfig: {
-                extends: '@salesforce/eslint-config-lwc/recommended',
+                extends: '@salesforce/eslint-config-lwc/extended',
             },
         });
 
@@ -61,11 +61,11 @@ describe('i18n configs', () => {
         assert.equal(messages[0].ruleId, '@lwc/lwc/no-moment');
     });
 
-    it('recommended-without-i18n should not include @lwc/lwc/no-moment rule', () => {
+    it('recommended should not include @lwc/lwc/no-moment rule', () => {
         const cli = new eslint.CLIEngine({
             useEslintrc: false,
             baseConfig: {
-                extends: '@salesforce/eslint-config-lwc/recommended-without-i18n',
+                extends: '@salesforce/eslint-config-lwc/recommended',
             },
         });
 

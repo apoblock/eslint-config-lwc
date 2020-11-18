@@ -7,7 +7,7 @@
 'use strict';
 
 module.exports = {
-    extends: [require.resolve('./recommended')],
+    extends: [require.resolve('./recommended'), require.resolve('./i18n')],
 
     rules: {
         // LWC COMPAT performance restrictions
