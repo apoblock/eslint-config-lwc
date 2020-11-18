@@ -11,7 +11,7 @@ const eslint = require('eslint');
 
 const { linkConfig, unlinkConfig } = require('./utils');
 
-describe('base i18n config', () => {
+describe('i18n configs', () => {
     before(() => {
         linkConfig();
     });
@@ -20,25 +20,26 @@ describe('base i18n config', () => {
         unlinkConfig();
     });
 
-    it('should load properly base-i18n config', () => {
+    it('should load properly i18n config', () => {
         const cli = new eslint.CLIEngine({
             useEslintrc: false,
             baseConfig: {
-                extends: '@salesforce/eslint-config-lwc/base-i18n',
+                extends: [
+                    '@salesforce/eslint-config-lwc/i18n',
+                    '@salesforce/eslint-config-lwc/base',
+                ],
             },
         });
 
         const report = cli.executeOnText(`
-            import { api } from 'lwc';
-            class Foo {
-                @api({ param: true })
-                foo;
-            }
+        var moment = require('moment');
+        var a = moment('2016-01-01'); 
+        a.format();
         `);
 
         const { messages } = report.results[0];
         assert.equal(messages.length, 1);
-        assert.equal(messages[0].ruleId, '@lwc/lwc/valid-api');
+        assert.equal(messages[0].ruleId, '@lwc/lwc/no-moment');
     });
 
     it('recommended set should include @lwc/lwc/no-moment rule', () => {
