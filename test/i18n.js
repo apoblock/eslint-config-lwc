@@ -41,20 +41,40 @@ describe('base i18n config', () => {
         assert.equal(messages[0].ruleId, '@lwc/lwc/valid-api');
     });
 
-    it('should include @lwc/lwc/no-moment rule', () => {
+    it('recommended set should include @lwc/lwc/no-moment rule', () => {
         const cli = new eslint.CLIEngine({
             useEslintrc: false,
             baseConfig: {
-                extends: '@salesforce/eslint-config-lwc/base-i18n',
+                extends: '@salesforce/eslint-config-lwc/recommended',
             },
         });
 
         const report = cli.executeOnText(`
         var moment = require('moment');
+        var a = moment('2016-01-01'); 
+        a.format();
         `);
 
         const { messages } = report.results[0];
         assert.equal(messages.length, 1);
         assert.equal(messages[0].ruleId, '@lwc/lwc/no-moment');
+    });
+
+    it('recommended-without-i18n should not include @lwc/lwc/no-moment rule', () => {
+        const cli = new eslint.CLIEngine({
+            useEslintrc: false,
+            baseConfig: {
+                extends: '@salesforce/eslint-config-lwc/recommended-without-i18n',
+            },
+        });
+
+        const report = cli.executeOnText(`
+        var moment = require('moment');
+        var a = moment('2016-01-01'); 
+        a.format();
+        `);
+
+        const { messages } = report.results[0];
+        assert.equal(messages.length, 0);
     });
 });
